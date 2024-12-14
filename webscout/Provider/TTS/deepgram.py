@@ -3,7 +3,6 @@ import requests
 import pathlib
 import base64
 from io import BytesIO
-from playsound import playsound
 from webscout import exceptions
 from webscout.AIbase import TTSProvider
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -155,21 +154,6 @@ class DeepgramTTS(TTSProvider):
             self.logger.critical(f"Failed to generate audio: {str(e)} 🚨")
             raise RuntimeError(f"Failed to generate audio: {str(e)}")
 
-    def play_audio(self, filename: str):
-        """
-        Plays an audio file using playsound.
-
-        Args:
-            filename (str): The path to the audio file.
-
-        Raises:
-            RuntimeError: If there is an error playing the audio.
-        """
-        try:
-            playsound(filename)
-        except Exception as e:
-            self.logger.error(f"Failed to play audio: {str(e)} 🚨")
-            raise RuntimeError(f"Failed to play audio: {str(e)}")
 
 # Example usage
 if __name__ == "__main__":
@@ -179,5 +163,4 @@ if __name__ == "__main__":
     deepgram.logger.info("Generating audio...")
     audio_file = deepgram.tts(text, voice="Brian") 
 
-    deepgram.logger.info("Playing audio...")
-    deepgram.play_audio(audio_file)
+    

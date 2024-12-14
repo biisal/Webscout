@@ -3,7 +3,6 @@ import requests
 import pathlib
 import base64
 from io import BytesIO
-from playsound import playsound
 from webscout import exceptions
 from webscout.AIbase import TTSProvider
 from webscout.Litlogger import LitLogger, LogFormat, ColorScheme
@@ -123,21 +122,6 @@ class GesseritTTS(TTSProvider):
                 f"Failed to perform the operation: {e}"
             )
         
-    def play_audio(self, filename: str):
-        """
-        Plays an audio file using playsound.
-
-        Args:
-            filename (str): The path to the audio file.
-
-        Raises:
-            RuntimeError: If there is an error playing the audio.
-        """
-        try:
-            playsound(filename)
-        except Exception as e:
-            self.logger.error(f"Error playing audio: {e} 🔇")
-            raise RuntimeError(f"Error playing audio: {e}")
 
 # Example usage
 if __name__ == "__main__":
@@ -147,5 +131,3 @@ if __name__ == "__main__":
     gesserit.logger.info("Generating audio...")
     audio_file = gesserit.tts(text, voice="Oliver") 
 
-    gesserit.logger.info("Playing audio...")
-    gesserit.play_audio(audio_file)

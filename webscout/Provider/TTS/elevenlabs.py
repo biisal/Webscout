@@ -2,7 +2,6 @@ import time
 import requests
 import pathlib
 from io import BytesIO
-from playsound import playsound
 from webscout import exceptions
 from webscout.AIbase import TTSProvider
 from webscout.Litlogger import LitLogger, LogFormat, ColorScheme
@@ -109,22 +108,7 @@ class ElevenlabsTTS(TTSProvider):
                 f"Failed to perform the operation: {e}"
             )
         
-    def play_audio(self, filename: str):
-        """
-        Plays an audio file using playsound.
-
-        Args:
-            filename (str): The path to the audio file.
-
-        Raises:
-            RuntimeError: If there is an error playing the audio.
-        """
-        try:
-            playsound(filename)
-        except Exception as e:
-            self.logger.error(f"Error playing audio: {e} 🔇")
-            raise RuntimeError(f"Error playing audio: {e}")
-
+    
 # Example usage
 if __name__ == "__main__":
     elevenlabs = ElevenlabsTTS()
@@ -132,6 +116,3 @@ if __name__ == "__main__":
 
     elevenlabs.logger.info("Generating audio...")
     audio_file = elevenlabs.tts(text, voice="Brian") 
-
-    elevenlabs.logger.info("Playing audio...")
-    elevenlabs.play_audio(audio_file)

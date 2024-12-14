@@ -3,7 +3,6 @@ import requests
 import pathlib
 from io import BytesIO
 from urllib.parse import urlencode
-from playsound import playsound
 from webscout import exceptions
 from webscout.AIbase import TTSProvider
 from webscout.Litlogger import LitLogger, LogFormat, ColorScheme
@@ -111,21 +110,6 @@ class MurfAITTS(TTSProvider):
                 f"Failed to perform the operation: {e}"
             )
         
-    def play_audio(self, filename: str):
-        """
-        Plays an audio file using playsound.
-
-        Args:
-            filename (str): The path to the audio file.
-
-        Raises:
-            RuntimeError: If there is an error playing the audio.
-        """
-        try:
-            playsound(filename)
-        except Exception as e:
-            self.logger.error(f"Error playing audio: {e} 🔇")
-            raise RuntimeError(f"Error playing audio: {e}")
 
 # Example usage
 if __name__ == "__main__":
@@ -135,5 +119,3 @@ if __name__ == "__main__":
     murfai.logger.info("Generating audio...")
     audio_file = murfai.tts(text, voice="Hazel") 
 
-    murfai.logger.info("Playing audio...")
-    murfai.play_audio(audio_file)

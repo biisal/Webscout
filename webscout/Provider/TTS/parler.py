@@ -1,7 +1,6 @@
 import time
 from pathlib import Path
 from typing import Generator
-from playsound import playsound
 from webscout import exceptions
 from webscout.AIbase import TTSProvider
 from webscout.Litlogger import LitLogger, LogFormat, ColorScheme
@@ -97,22 +96,7 @@ class ParlerTTS(TTSProvider):
             self.logger.error(f"Error saving audio: {e} 🔇")
             raise exceptions.FailedToGenerateResponseError(f"Error saving audio: {e}")
 
-    def play_audio(self, filename: str):
-        """
-        Plays an audio file using playsound.
-
-        Args:
-            filename (str): The path to the audio file.
-
-        Raises:
-            RuntimeError: If there is an error playing the audio.
-        """
-        try:
-            self.logger.info(f"Playing audio: {filename} 🎵")
-            playsound(filename)
-        except Exception as e:
-            self.logger.error(f"Error playing audio: {e} 🔇")
-            raise RuntimeError(f"Error playing audio: {e}")
+    
 
 
 # Example usage
@@ -131,5 +115,3 @@ if __name__ == "__main__":
     parlertts.logger.info("Generating audio...")
     audio_file = parlertts.tts(text, description=voice_description, use_large=False)
 
-    parlertts.logger.info("Playing audio...")
-    parlertts.play_audio(audio_file)

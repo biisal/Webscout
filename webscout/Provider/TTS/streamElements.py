@@ -3,7 +3,6 @@ import requests
 import pathlib
 import urllib.parse
 from typing import Union, Generator
-from playsound import playsound
 from webscout import exceptions
 from webscout.AIbase import TTSProvider
 from webscout.Litlogger import LitLogger, LogFormat, ColorScheme
@@ -331,22 +330,6 @@ class StreamElements(TTSProvider):
                 f"Failed to perform the operation: {e}"
             )
         
-    def play_audio(self, filename: str):
-        """
-        Plays an audio file using playsound.
-
-        Args:
-            filename (str): The path to the audio file.
-
-        Raises:
-            RuntimeError: If there is an error playing the audio.
-        """
-        try:
-            self.logger.info(f"Playing audio: {filename} 🎵")
-            playsound(filename)
-        except Exception as e:
-            self.logger.error(f"Error playing audio: {e} 🔇")
-            raise RuntimeError(f"Error playing audio: {e}")
 
 # Example usage
 if __name__ == "__main__":

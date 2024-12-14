@@ -14,7 +14,6 @@ from typing import List, Tuple, Union
 from typing import NoReturn
 import requests
 from pathlib import Path
-from playsound import playsound
 from time import sleep as wait
 import pathlib
 import urllib.parse
@@ -431,11 +430,4 @@ class Audio:
             return resp.content
         return save_to
 
-    @staticmethod
-    def play(path_to_audio_file: Union[Path, str]) -> NoReturn:
-        """Play audio (.mp3) using playsound.
-        """
-        if not Path(path_to_audio_file).is_file():
-            raise FileNotFoundError(f"File does not exist - '{path_to_audio_file}'")
-        playsound(path_to_audio_file)
 # 

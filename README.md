@@ -714,8 +714,6 @@ text = "Hello, this is a test of the Voicepods text-to-speech"
 print("Generating audio...")
 audio_file = voicepods.tts(text)
 
-print("Playing audio...")
-voicepods.play_audio(audio_file)
 ```
 
 ### 💬 `Duckchat` - Chat with LLM
